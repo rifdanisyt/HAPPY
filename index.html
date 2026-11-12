@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff7ef">
+  <title>Happy Anniversary ❤️</title>
+
+  <!-- Font romantis dari Google Fonts (butuh internet; kalau offline otomatis pakai font cadangan) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Lapisan hati melayang (diisi oleh script.js) -->
+  <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+
+  <!-- Tombol musik kecil di pojok kanan atas (muncul setelah musik dimulai) -->
+  <button class="music-btn" id="musicBtn" type="button" aria-label="Jeda musik">
+    <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="music-icon" id="musicIcon" aria-hidden="true">⏸</span>
+  </button>
+
+  <audio id="bgm" preload="auto"></audio>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <noscript><p style="padding:24px;text-align:center">Website ini membutuhkan JavaScript agar bisa dibuka ❤️</p></noscript>
+
+  <!-- ==================== 1. OPENING ==================== -->
+  <section class="screen screen-center active" id="screen-opening">
+    <div class="glow" aria-hidden="true"></div>
+    <i class="sparkle" style="--x:14%;--y:16%;--d:0s" aria-hidden="true">✦</i>
+    <i class="sparkle" style="--x:82%;--y:22%;--d:1.2s" aria-hidden="true">✦</i>
+    <i class="sparkle" style="--x:24%;--y:78%;--d:2.1s" aria-hidden="true">✦</i>
+    <i class="sparkle" style="--x:78%;--y:70%;--d:.7s" aria-hidden="true">✦</i>
+
+    <p class="hand rise" style="--d:.1s">Untuk <span data-partner></span></p>
+    <h1 class="rise" style="--d:.4s" id="openTitle">Happy 4th Anniversary ❤️</h1>
+    <p class="tag rise" style="--d:.8s">4 years • countless memories</p>
+    <div class="divider rise" style="--d:1s"><span>♥</span></div>
+    <div class="open-text rise" style="--d:1.3s" id="openText"></div>
+    <button class="btn pulse rise" style="--d:1.8s" id="startBtn" type="button">Mulai Cerita Kita ❤️</button>
+  </section>
+
+  <!-- ==================== 2. MATCHING GAME ==================== -->
+  <section class="screen screen-center" id="screen-match">
+    <h2>Seberapa Cocok Kita? ❤️</h2>
+    <p class="sub">Temukan semua pasangan yang sama sebelum lanjut.</p>
+    <p class="stat">Langkah: <b id="moves">0</b> &nbsp;|&nbsp; Pasangan: <b id="pairs">0</b>/6</p>
+    <div class="match-grid" id="matchGrid"></div>
+  </section>
+
+  <!-- ==================== 3. PHOTO PUZZLE ==================== -->
+  <section class="screen screen-center" id="screen-puzzle">
+    <h2>Susun Kenangan Kita 🧩</h2>
+    <p class="sub">Coba susun foto ini sampai kembali seperti semula.</p>
+    <div class="ref">
+      <img id="refImg" alt="Contoh foto puzzle yang sudah tersusun">
+      <span class="hand">Harus jadi kayak gini ya, cantik ❤️</span>
+    </div>
+    <div class="board" id="board" aria-label="Papan puzzle 3 kali 3"></div>
+    <p class="stat">Langkah: <b id="puzzleMoves">0</b> &nbsp;|&nbsp; Ketuk dua potongan untuk menukar</p>
+  </section>
+
+  <!-- ==================== 4 + 5. SURAT & FOTO ==================== -->
+  <section class="screen" id="screen-story">
+
+    <header class="story-head reveal">
+      <h2 class="story-title">SATU CERITA DARI HATI YANG SELALU MILIK KAMU</h2>
+      <div class="divider"><span>♥</span></div>
+    </header>
+
+    <!-- Surat -->
+    <article class="letter paper reveal">
+      <p class="hand to">Untuk <span data-partner></span>,</p>
+
+      <!-- ========================================
+           GANTI ISI CERITA MULAI DARI SINI
+           (satu <p> = satu paragraf)
+      ========================================= -->
+
+      <p>Aku bingung harus mulai dari mana. Empat tahun itu cukup besar untuk menyimpan banyak hal, tapi rasanya waktu berlalu cepat.</p>
+
+      <p>Cerita kita dimulai dari masa SMP, waktu kelas 8 aku mulai suka sama kamu. Dulu tuh setiap kamu baik ke aku, selalu aku anggap kamu 
+        juga suka sama aku wkwkwk. Bahkan aku pernah sengaja minta air cuma biar ada alasan buat interaksi sama kamu hehe. Terus, aku juga masih 
+        inget kamu pernah pakai kacamataku buat jadi cermin. Kacau sih, masa kacamata aku buat ngaca. Tapi dari situ aku bisa lihat mata kamu dari deket, 
+        dan jujur waktu itu bikin aku salting sendiri. Hal kecil sih, tapi masih aku ingat sampai sekarang</p>
+
+      <p>Setelah lulus SMP, kita sempat lost contact. Sampe tiba-tiba kamu mulai chat aku lagi, entah kenapa, tapi aku senang sih wkwk. Walaupun ternyata 
+        seringnya cuma minta bantuan bikin PDF tugas. Terus waktu eskul kamu ngadain konser, kamu sempat nawarin tiket tapi malah aku tolak. Eh, 
+        ujung-ujungnya aku tetap datang bareng teman aku. Aku masih ingat banget waktu kamu masangin gelang tiket ke tangan aku. Sempat mikir, jangan-jangan 
+        kamu sengaja nunggu giliran aku biar kamu sendiri yang masangin, bukan teman kamu, wkwkwk. Terus datanglah COVID-19, semuanya serba online, dan aku 
+        akhirnya nekat nembak kamu. Eh, ternyata ditolak, huhu sedih. Habis itu kita jadi asing lagi.</p>
+
+      <p>Selama COVID kita jarang komunikasi. Waktu aku kuliah di Bali, kita sempat chatting lagi walaupun akhirnya lost contact lagi. Sampai 
+        akhirnya aku kuliah di Purwokerto dan kita mulai chat lagi, tapi kali ini lebih intens. Dari yang awalnya ngobrol biasa, lama-lama jadi sering cerita 
+        dan saling ngabarin. Dan yap, ternyata ini awal mula kita, hehe. Aku akhirnya nembak kamu lagi, walaupun kalau dipikir-pikir cara nembaknya ngasal banget ya, 
+        WKWKWK. Tapi siapa sangka, dari cara nembak yang nggak jelas itu kita malah bisa sampai sejauh ini. Dari SMP, sempat ditolak, berkali-kali lost contact, sampai 
+        akhirnya sekarang udah empat tahun bareng.</p>
+
+      <p>Kalau ditanya kenapa aku suka sama kamu dari dulu, sebenarnya banyak hal kecil yang bikin aku tertarik. Aku suka cara kamu bersikap ke orang lain, cara kamu 
+        peduli sama orang-orang di sekitar kamu, dan cara kamu ketawa. Dari SMP aku udah suka lihat kamu ketawa, apalagi kalau aku yang bikin kamu ketawa, hehe. 
+        Oh iya, satu lagi yang nggak boleh dilupain, pipi tembem kamu waktu SMP, WKWKWK. Dulu aku suka banget sama pipi kamu yang tembem itu, gemes aja rasanya. 
+        Mungkin dulu aku belum ngerti banget soal sayang, tapi yang jelas aku selalu senang kalau ada kamu. Dan ternyata sampai sekarang pun masih banyak hal kecil dari kamu 
+        yang bikin aku senang.</p>
+        
+
+      <p>
+  Aku mau bilang makasih banyak yaa, sayang. Makasih udah mau hadir
+  dan nemenin aku dari awal masa perkuliahan sampai sekarang.
+  Kamu udah lihat banyak banget proses dalam hidupku, dari aku
+  yang masih bingung sama banyak hal, perjuangan selama kuliah,
+  sampai akhirnya bisa ada di titik sekarang. Makasih udah mau
+  dengerin cerita dan keluh kesahku, selalu support aku, ngasih
+  nasihat, dan tetap sabar sama segala kekuranganku.
+      </p>
+
+      <p>
+  Dan makasih juga karena dulu kamu mau nerima aku apa adanya,
+  padahal kalau dilihat-lihat aku yang dulu kayaknya belum
+  setampan sekarang ya, WKWKWK. Kepedean banget aku hehe.
+      </p>
+
+      <p>
+  Tapi di balik itu semua, aku sadar kalau selama empat
+  tahun ini aku belum selalu bisa jadi pasangan yang terbaik
+  buat kamu. Masih banyak kekurangan dari aku, masih banyak
+  hal yang harus aku pelajari dan perbaiki. Tapi satu hal
+  yang pengen kamu tahu, aku bener-bener menghargai setiap
+  waktu, perhatian, kesabaran, dan kasih sayang yang udah
+  kamu kasih selama ini.
+      </p>
+     
+      <p>Salah satu kenangan favoritku selama empat tahun ini 
+        adalah waktu kamu mau datang jauh-jauh ke Purwokerto. 
+        Di tengah sibuknya pekerjaan kamu, kamu masih nyempetin 
+        waktu buat ketemu aku. Aku senang banget waktu itu. 
+        Kita sempat jalan-jalan ke hutan pinus sama curug, dan walaupun
+        cuma jalan-jalan sederhana, rasanya seneng banget karena
+        bisa bareng kamu. Oh iya, maaf yaa kalau saat itu kurang untuk jalan jalannya, next kita akan mengeksplor baturaden lagi.</p>
+
+      <p>Buat tahun-tahun berikutnya, aku berharap kita bisa sama-sama 
+        jadi pribadi yang lebih baik yaa, sayang. Semoga apa yang selama 
+        ini kita cita-citakan bisa satu per satu terwujud. Doain aku juga ya, 
+        semoga pekerjaanku lancar dan karierku bisa terus berkembang. Aku juga 
+        selalu doain semoga pekerjaan kamu lancar, karier kamu makin bagus, 
+        dan semua usaha kamu selama ini membuahkan hasil yang baik. Aamiin. 
+        Semoga nanti kita bisa datang ke semua tempat yang selama ini cuma kita 
+        obrolin dan impikan. Masih banyak tempat yang pengen aku datangi bareng 
+        kamu, masih banyak hal yang pengen kita coba, dan tentunya masih banyak kenangan 
+        yang pengen aku buat sama kamu. Aku tahu ke depannya pasti nggak selalu mudah, tapi 
+        semoga kita bisa terus saling ngerti, saling support, dan sama-sama belajar memperbaiki diri. 
+        Empat tahun ini udah banyak banget ceritanya, dan aku berharap masih ada banyak tahun berikutnya 
+        buat kita. I love you, sayang ❤️</p>
+
+      <p>Terima kasih sudah memilih bertahan, dan memilih aku, berkali-kali. Aku nggak pernah merasa sendirian sejak ada kamu.</p>
+
+      <!-- ========================================
+           BATAS AKHIR CERITA
+      ========================================= -->
+
+      <p class="hand sign">Dengan sayang,<br><span data-you></span></p>
+    </article>
+
+    <!-- Galeri foto -->
+    <section class="journey">
+      <h2 class="reveal">4 Years of Us 📸</h2>
+      <p class="sub reveal">Ketuk foto untuk melihatnya lebih besar.</p>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <div class="last-wrap reveal">
+      <div class="divider"><span>♥</span></div>
+      <button class="btn pulse" id="finalBtn" type="button">Ada satu hal terakhir... ❤️</button>
+    </div>
+  </section>
+
+  <!-- ==================== 6. FINAL SURPRISE ==================== -->
+  <section class="screen screen-center" id="screen-final">
+    <div class="final-photo"><img id="finalPhoto" alt="Kita berdua"></div>
+    <p class="hand">Untuk <span data-partner></span></p>
+    <div class="final-text" id="finalText"></div>
+    <p class="hand final-small" id="finalSmall"></p>
+    <p class="tag" id="finalDate"></p>
+  </section>
+
+  <!-- Lightbox foto -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto besar">
+    <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Tutup">✕</button>
+    <img id="lbImg" alt="">
+    <p class="hand" id="lbCaption"></p>
+    <div class="lb-nav">
+      <button class="lb-btn" id="lbPrev" type="button" aria-label="Foto sebelumnya">‹</button>
+      <button class="lb-btn" id="lbNext" type="button" aria-label="Foto berikutnya">›</button>
+    </div>
+  </div>
+
+  <!-- Pesan sukses (dipakai oleh kedua mini game) -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-box paper">
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+      <button class="btn" id="modalBtn" type="button">Lanjut →</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
